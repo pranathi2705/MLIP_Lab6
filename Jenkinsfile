@@ -10,10 +10,10 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Setting up virtual environment and running pytest...'
-                sh '''
-                    python3 -m venv mlip
-                    . mlip/bin/activate
+                echo 'Setting up virtual environment and running pytest on Windows...'
+                bat '''
+                    python -m venv mlip
+                    call mlip\\Scripts\\activate.bat
                     pip install --upgrade pip
                     pip install pytest numpy pandas scikit-learn
                     pytest
