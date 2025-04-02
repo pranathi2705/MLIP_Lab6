@@ -4,26 +4,26 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat '''
-                echo Build Step: Python does not need compilation.
-                '''
+                echo 'No build step needed for Python project'
             }
         }
 
         stage('Test') {
             steps {
-                bat '''
-                echo Running tests with pytest...
-                pytest
+                echo 'Setting up virtual environment and running pytest...'
+                sh '''
+                    python3 -m venv mlip
+                    . mlip/bin/activate
+                    pip install --upgrade pip
+                    pip install pytest numpy pandas scikit-learn
+                    pytest
                 '''
             }
         }
 
         stage('Deploy') {
             steps {
-                bat '''
-                echo Deployment step - no deployment needed for this lab.
-                '''
+                echo 'No deploy step defined for this lab'
             }
         }
     }
